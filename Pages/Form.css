@@ -1,0 +1,67 @@
+body {
+    font-family: 'PT Sans', sans-serif;
+    font-size: x-large;
+    background: #eee;
+    background-image: url("login-background-img.jpg");
+    /*background-image: url("1431301.jpg");*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+}
+
+#frm {
+    border: solid gray 1px;
+    width: 25%;
+    border-radius: 2px;
+    margin: 150px auto;
+    background: #c3a48f;
+    padding: 50px;
+}
+
+#frm img {
+    margin-left: -15px;
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+}
+
+#frm2 {
+    border: solid gray 1px;
+    width: 25%;
+    border-radius: 2px;
+    margin: 30px auto;
+    background: #c3a48f;
+    padding: 50px;
+}
+
+#frm2 label {
+    margin-left: -160px;
+    font-size: medium;
+}
+
+#btn {
+    color: #fff;
+    background: #337ab7;
+    padding: 7px;
+    cursor: pointer;
+}
+
+label {
+    font-weight: bold;
+    color: #100b08;
+}
+
+input {
+    margin-top: 3%;
+    width: 200px;
+    height: 30px;
+}
+
+a {
+    font-size: x-small;
+}

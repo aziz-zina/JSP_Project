@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+:root {
+    --main-color: #d3ad7f;
+    --black: #13131a;
+    --bg: #010103;
+    --border: .1rem solid rgba(255, 255, 255, .3);
+}
+
+body {
+    padding: 0px;
+}
+
+.body {
+    padding: 30px;
+    background-image: url("dog-hairstyles.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 600px;
+}
+
+.account-icon {
+    margin-top: -10px;
+    height: 50px;
+    width: auto;
+    padding-left: 10px;
+}
+
+.logout-icon {
+    margin-top: -10px;
+    height: 40px;
+    width: auto;
+    padding-left: 10px;
+}
+
+.buttons {
+    padding-left: 10px;
+    padding-top: 0px;
+    margin-left: 650px;
+}
+
+.buttons2 {
+    padding-left: 0px;
+    padding-top: 15px;
+    margin-left: 750px;
+}
+
+.btn {
+    margin-left: 6px;
+}
+
+.banner {
+    margin-top: 100px;
+}
+
+.contact {
+    border-radius: 50px;
+
+}
+
+.about-us {
+    margin: 40px 300px 40px 300px;
+}
+
+.main-section {
+    display: flex;
+}
+
+.abtUsImg {
+    height: 200px;
+    width: 300px;
+}
+
+.services {
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 30px;
+    background-image: url("2021-03-31.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.service-section {
+    justify-content: center;
+    display: flex;
+}
+
+.service-box {
+    display: grid;
+    background: rgba(255, 255, 255, 0.85);
+    margin: 90px;
+    height: auto;
+    width: auto;
+}
+
+.service-box img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: 50px;
+}
+
+.service-box button {
+    margin: 30px;
+}
+
+.contact {
+    margin: 30px;
+}
+
+.contact .row {
+    display: block;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .salon-info {
+    flex: 1;
+    max-width: 400px;
+  }
+  
+  .img {
+    margin-left: 20px;
+  }
+  
+  .img img {
+    width: 50px;
+  }
+  
+  .footer h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #d3ad7f;
+  }
+  
+  .footer p {
+    margin: 5px 0;
+  }
+  
+  .footer .copyright {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
