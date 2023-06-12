@@ -2,6 +2,26 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.sql.*" %>
+<%@ include file="../database/basedados.h" %>
+<%
+String state = request.getParameter("state");
+if (state != null) {
+    switch (state) {
+        case "1":
+            out.println("<script>alert('User edited.');</script>");
+            break;
+        case "2":
+            out.println("<script>alert('User has been deleted.');</script>");
+            break;
+        case "3":
+            out.println("<script>alert('You need to fill the form first!');</script>");
+            break;
+        case "4":
+            out.println("<script>alert('User has been validated');</script>");
+            break;
+    }
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,6 +66,7 @@
             margin-left: 30px;
         }
     </style>
+
 </head>
 
 <body>
@@ -65,71 +86,58 @@
                 </tr>
             </thead>
             <tbody>
-                <% 
-                if (session.getAttribute("login") != null && session.getAttribute("function").equals(1)) {
-                    if (session.getAttribute("function").equals(1)) {
-                        // Assuming basedados.h is a JSP file included using <%@ include file="../database/basedados.h" %>
-                        // You can replace it with the appropriate JSP code to establish a database connection and query
-                        Connection conn = null;
-                        Class.forName("com.mysql.jdbc.Driver").newInstance();
-                        String jdbcURL = "jdbc:mysql://localhost:3306/beauty_salon_management"; // BD "jsp"
-                        conn = DriverManager.getConnection(jdbcURL, "root", "");
-                        
-                        // SQL Query
-                        PreparedStatement psSelectRecord = null;
-                        ResultSet rsSelectRecord = null;
-                        String sqlSelectRecord = null;
-                        sqlSelectRecord = "SELECT * FROM user";
-                        psSelectRecord = conn.prepareStatement(sqlSelectRecord);
-                        rsSelectRecord = psSelectRecord.executeQuery();
-
-                        // Assuming conn is the database connection object
-                        if (!rsSelectRecord.next()) {
-                            response.setHeader("Refresh", "2;url=PgLogin.jsp?state=1"); // If there is no row selected, go back to the login page
-                            return;
-                        } else {
-                            while (rsSelectRecord.next()) {
-                                out.println("<tr class='table-secondary'><td>" + rsSelectRecord.getString("Login") + "</td>");
-                                out.println("<td>" + rsSelectRecord.getString("Email") + "</td>");
-                                out.println("<td>" + rsSelectRecord.getString("Telephone") + "</td>");
-                                int type = rsSelectRecord.getInt("Type");
-                                switch (type) {
-                                    case 1:
-                                        out.println("<td>Administrator</td>");
-                                        break;
-                                    case 2:
-                                        out.println("<td>Employee</td>");
-                                        break;
-                                    case 3:
-                                        out.println("<td>Validated client</td>");
-                                        break;
-                                    case 4:
-                                        out.println("<td>Client not validated</td>");
-                                        break;
-                                }
-                                if (type != 1) {
-                                    if (type == 4) {
-                                        out.println("<td><a href='validate.jsp?val=" + rsSelectRecord.getString("Login") + "'><img src='check-mark.png' class='management-icon'></a></td>");
-                                    } else {
-                                        out.println("<td><a href='delete_user.jsp?val=" + rsSelectRecord.getString("Login") + "'></a></td>");
-                                    }
-                                    out.println("<td><a href='Pgedit_user.jsp?val=" + rsSelectRecord.getString("Login") + "'><img src='edit.png' class='management-icon'></a></td>");
-                                    out.println("<td><a href='delete_user.jsp?val=" + rsSelectRecord.getString("Login") + "'><img src='remove.png' class='management-icon'></a></td>");
-                                } else {
-                                    out.println("<td></td>");
-                                    out.println("<td><a href='Pgedit_user.jsp?val=" + rsSelectRecord.getString("Login") + "'><img src='edit.png' class='management-icon'></a></td>");
-                                    out.println("<td></td>");
-                                }
-                                out.println("</tr>");
-                            }
-                            rsSelectRecord.close();
-                            conn.close();
-                        }
+            <% 
+            session = request.getSession(true);
+            if (session.getAttribute("login") != null && session.getAttribute("function") != null ){
+                if(session.getAttribute("function").equals("1")){
+                    Connection conn = null;
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    String jdbcURL="jdbc:mysql://localhost:3306/beauty_salon_management";  // BD "jsp"
+                    conn = DriverManager.getConnection(jdbcURL,"root", "");
+                    session.setMaxInactiveInterval(1800); // Set session timeout to 30 minutes
+                    //SQL Query
+                    PreparedStatement psSelectRecord=null;
+                    ResultSet rsSelectRecord=null;
+                    String sqlSelectRecord=null;
+                    sqlSelectRecord = "SELECT * FROM user";
+                    psSelectRecord=conn.prepareStatement(sqlSelectRecord);
+                    rsSelectRecord=psSelectRecord.executeQuery();
+                    if (!rsSelectRecord.next()) {
+                        response.setHeader("Refresh", "2;url = PgLogin.jsp?state=1"); //If there is no row selected, goes back to the login page
+                        return;
                     }
+                    while(rsSelectRecord.next()){
+                        out.println("<tr class='table-secondary'><td>" + rsSelectRecord.getString("login") + "</td>");
+                        out.println("<td>" + rsSelectRecord.getString("Email") + "</td>");
+                        out.println("<td>" + rsSelectRecord.getString("Telephone") + "</td>");
+                        if (rsSelectRecord.getString("Type").equals("1")) {
+                            out.println("<td>Administrator</td>");
+                        } else if(rsSelectRecord.getString("Type").equals("2")){
+                            out.println("<td>Employee</td>");
+                        } else if(rsSelectRecord.getString("Type").equals("3")){
+                            out.println("<td>Validated client</td>");
+                        } else{
+                            out.println("<td>Client not validated</td>");
+                        }
+                        if (!rsSelectRecord.getString("Type").equals("1")) {
+                            if (rsSelectRecord.getString("Type").equals("4")) {
+                                out.println("<td><a href='validate.jsp?val=" + rsSelectRecord.getString("login") + "'><img src='check-mark.png' class='management-icon'></a></td>");
+                            } else {
+                                out.println("<td><a href='delete_user.jsp?val=" + rsSelectRecord.getString("login") + "'></a></td>");
+                            }
+                            out.println("<td><a href='Pgedit_user.jsp?val=" + rsSelectRecord.getString("login") + "'><img src='edit.png' class='management-icon'></a></td>");
+                            out.println("<td><a href='delete_user.jsp?val=" + rsSelectRecord.getString("login") + "'><img src='remove.png' class='management-icon'></a></td>");
+                        } else {
+                            out.println("<td></td>");
+                            out.println("<td><a href='Pgedit_user.jsp?val=" + rsSelectRecord.getString("login") + "'><img src='edit.png' class='management-icon'></a></td>");
+                            out.println("<td></td>");
+                        }
+                    } 
                 } else {
-                    response.sendRedirect("homePage.jsp?state=3");
+                    response.setHeader("Refresh", "2; URL= homePage.php?state=3");
                 }
-                %>
+            }
+            %>
             </tbody>
         </table>
     </div>

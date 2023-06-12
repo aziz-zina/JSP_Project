@@ -3,6 +3,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.sql.*" %>
+<%@ include file="../database/basedados.h" %>
 <%
     session = request.getSession(true);
     if (session.getAttribute("login") != null && request.getParameter("user") != null
