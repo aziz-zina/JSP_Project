@@ -59,7 +59,7 @@
         <form name="f1" action="pickEmployee.jsp" method="POST">
             <center>
                 <%
-                    if (session.getAttribute("function").equals("1")) {
+                    if (session.getAttribute("function") != null && session.getAttribute("function").equals("1")) {
                 %>
                 <label style="margin-left: -95px;"> Pick the user: </label><br>
                 <select name="user">
@@ -86,7 +86,7 @@
                     %>
                 </select><br><br>
                 <%
-                    } else if (session.getAttribute("function").equals("2")) {
+                    } else if (session.getAttribute("function") != null && session.getAttribute("function").equals("2")) {
                 %>
                 <label style="margin-left: -95px;"> Pick the user: </label><br>
                 <select name="user">
@@ -117,7 +117,7 @@
                     } else {
                 %>
                 <label> User: </label><br>
-                <input type="text" value="<%= session.getAttribute("login") %>" readonly><br><br>
+                <input type="text" name="user" value="<%= session.getAttribute("login") %>" readonly><br><br>
                 <%
                     }
                 %>
@@ -136,13 +136,13 @@
                 <label style="margin-left: -90px;"> Pick a service: </label><br>
                 <div class="check-box">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="Cut" id="flexCheckDefault" name="service[]">
+                        <input class="form-check-input" type="checkbox" value="Cut" id="flexCheckDefault" name="service">
                         <label class="form-check-label" for="flexCheckDefault">
                             Cut
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="Wash" id="flexCheckChecked" name="service[]">
+                        <input class="form-check-input" type="checkbox" value="Wash" id="flexCheckChecked" name="service">
                         <label class="form-check-label" for="flexCheckChecked">
                             Wash
                         </label>

@@ -22,15 +22,17 @@
 <%@ include file="../database/basedados.h" %>
 <%
 if (session.getAttribute("login") != null && session.getAttribute("function") != null && request.getParameter("date") != null && request.getParameter("time") != null && request.getParameter("pet") != null && request.getParameter("service") != null && request.getParameter("employee") != null && request.getParameter("user") != null) {
-    if( session.getAttribute("function") == 4){
+    if( session.getAttribute("function").equals("4")){
         response.setHeader("Refresh", "2;url = homePage.jsp?state=1");
     }
-    String date = request.getAttribute("date");
-    String time = request.getAttribute("time");
-    String pet = request.getAttribute("pet");
-    String user = request.getAttribute("user");
-    String service = request.getAttribute("service");
-    String employee = request.getAttribute("employee");
+    String date = request.getParameter("date");
+    String time = request.getParameter("time");
+    String pet = request.getParameter("pet");
+    String user = request.getParameter("user");
+    String service = request.getParameter("service");
+    String employee = request.getParameter("employee");
+
+    Connection conn = null;
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     String jdbcURL="jdbc:mysql://localhost:3306/beauty_salon_management";  // BD "jsp"
     conn = DriverManager.getConnection(jdbcURL,"root", "");
@@ -42,16 +44,31 @@ if (session.getAttribute("login") != null && session.getAttribute("function") !=
     psSelectRecord=conn.prepareStatement(sqlSelectRecord);
     rsSelectRecord=psSelectRecord.executeQuery();
     if (!rsSelectRecord.next()) {
-        $sql = "INSERT INTO reservation (idClient, date, time, pet, serviceType, EmployeeUser) VALUES (?, ?, ?, ?, ?, ?)";
+        sqlSelectRecord = "INSERT INTO reservation (idClient, date, time, pet, serviceType, EmployeeUser) VALUES (?, ?, ?, ?, ?, ?)";
         psSelectRecord=conn.prepareStatement(sqlSelectRecord);
         psSelectRecord.setString(1, user);
         psSelectRecord.setString(2, date);
         psSelectRecord.setString(3, time);
         psSelectRecord.setString(4, pet);
         psSelectRecord.setString(5, service);
-        psSelectRecord.setString(5, employee);
+        psSelectRecord.setString(6, employee);
         psSelectRecord.executeUpdate();
-        response.setHeader("Refresh", "2;url = PgLogin.jsp"); //If there is no row selected, goes back to the login page
+        response.setHeader("Refresh", "2;url = homePage.jsp"); //If there is no row selected, goes back to the login page
+    }else {
+        if (request.getParameter("idReservation") != null) {
+            String id = request.getParameter("idReservation");
+            sqlSelectRecord = "UPDATE reservation SET EmployeeUser = '" + employee + "', date = '" + date + "', time = '" + time + "', pet = '" + pet + "', serviceType = '" + service + "' WHERE idReservation = '" + id + "'";
+            psSelectRecord=conn.prepareStatement(sqlSelectRecord);
+            psSelectRecord.executeUpdate();
+            response.setHeader("Refresh", "2;url = homePage.jsp"); //If there is no row selected, goes back to the login page
+        } else {
+            response.setHeader("Refresh", "2;url=PgReservation.jsp?state=3");
+        }
     }
+    /*if(rsSelectRecord.next()){
+        response.setHeader("Refresh", "2;url = homePage.jsp"); //If there is no row selected, goes back to the login page
+    }*/
+} else{
+    response.setHeader("Refresh", "2; url=PgReservation.php?state=1");
 }
 %>
