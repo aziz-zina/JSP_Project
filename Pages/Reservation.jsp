@@ -66,9 +66,6 @@ if (session.getAttribute("login") != null && session.getAttribute("function") !=
             response.setHeader("Refresh", "2;url=PgReservation.jsp?state=3");
         }
     }
-    /*if(rsSelectRecord.next()){
-        response.setHeader("Refresh", "2;url = homePage.jsp"); //If there is no row selected, goes back to the login page
-    }*/
 } else{
     response.setHeader("Refresh", "2; url=PgReservation.php?state=1");
 }

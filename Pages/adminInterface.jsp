@@ -98,8 +98,8 @@
   <div id="frminterface">
     <form name="f1">
       <div class="button-container" id="box">
-        <a href="AdminReservationsManagement.php"><button type="button" class="button">MANAGEMENT OF RESERVATION</button></a>
-        <a href="Pgpersonal_info.php"><button class="button" type="button"> MANAGEMENT PERSONAL ACCOUNT</button></a>
+        <a href="AdminReservationsManagement.jsp"><button type="button" class="button">MANAGEMENT OF RESERVATION</button></a>
+        <a href="Pgpersonal_info.jsp"><button class="button" type="button"> MANAGEMENT PERSONAL ACCOUNT</button></a>
       </div>
       <a href="userManagement.jsp"><button class="button2" type="button"> USER MANAGEMENT</button></a>
       <br>
