@@ -20,27 +20,7 @@
         String date = request.getParameter("date");
         String time = request.getParameter("time");
         String pet = request.getParameter("pet");
-        String[] services = request.getParameterValues("service");
-
-        // Checking the service type
-        String srv = "";
-
-        if (services != null && services.length == 1) {
-            srv = services[0];
-        } else if (services != null && services.length == 2) {
-            srv = "Both";
-        } else {
-            response.setHeader("Refresh", "2; URL= PgReservation.jsp?state=2");
-            return; // If the user doesn't choose a service, they go back to the form
-        }
-
-        if (request.getParameter("idReservation") != null) {
-            String id = request.getParameter("idReservation");
-            out.println("<input type='hidden' name='idReservation' value='" + id + "' />");
-        }
-
-        out.println(srv);
-    
+        String service = request.getParameter("service");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +49,7 @@
         %>
         <input type="hidden" name="idReservation" value="<%= id %>" readonly />
         <%
-            }
+        }
         %>
         <center>
             <label> User: </label><br>
@@ -79,13 +59,13 @@
             <input type="text" name="pet" value="<%=  pet%>" readonly><br><br>
 
             <label style="margin-left: -140px;"> Service:</label><br>
-            <input type="text" name="service" value="<%= srv %>" readonly><br><br>
+            <input type="text" name="service" value="<%= service %>" readonly><br><br>
 
             <label> Date: </label><br>
-            <input type="date" id="date" name="date" required placeholder="date" value="<%= request.getParameter("date") %>" readonly /><br><br>
+            <input type="date" id="date" name="date" required placeholder="date" value="<%= date %>" readonly /><br><br>
 
             <label> Time: </label><br>
-            <input type="time" id="time" name="time" value="<%= request.getParameter("time") %>" readonly /><br><br>
+            <input type="time" id="time" name="time" value="<%= time %>" readonly /><br><br>
             
             <label style="margin-left: -120px;"> Pick an employee: </label><br>
             <select name="employee">
@@ -101,17 +81,17 @@
             ResultSet rsSelectRecord=null;
             String sqlSelectRecord=null;
             if (pet.equals("dog")) {
-                if (srv.equals("Cut")) {
+                if (service.equals("Cut")) {
                     sqlSelectRecord = "SELECT * FROM employeeact WHERE Dog = 1 AND Cut = 1";
-                } else if (srv.equals("Wash")) {
+                } else if (service.equals("Wash")) {
                     sqlSelectRecord = "SELECT * FROM employeeact WHERE Dog = 1 AND Wash = 1";
                 } else {
                     sqlSelectRecord = "SELECT * FROM employeeact WHERE Dog = 1 AND Wash = 1 AND Cut = 1";
                 }
             } else {
-                if (srv.equals("Cut")) {
+                if (service.equals("Cut")) {
                     sqlSelectRecord = "SELECT * FROM employeeact WHERE Cat = 1 AND Cut = 1";
-                } else if (srv.equals("Wash")) {
+                } else if (service.equals("Wash")) {
                     sqlSelectRecord = "SELECT * FROM employeeact WHERE Cat = 1 AND Wash = 1";
                 } else {
                     sqlSelectRecord = "SELECT * FROM employeeact WHERE Cat = 1 AND Wash = 1 AND Cut = 1";

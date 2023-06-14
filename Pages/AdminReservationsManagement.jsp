@@ -104,7 +104,7 @@ if (stateParam != null) {
                     PreparedStatement psSelectRecord=null;
                     ResultSet rsSelectRecord=null;
                     String sqlSelectRecord=null;
-                    sqlSelectRecord = "SELECT * FROM reservation AS r JOIN user AS u ON r.idClient = u.Login ORDER BY idClient ";
+                    sqlSelectRecord = "SELECT * FROM reservation AS r INNER JOIN user as U1 ON r.idClient = U1.Login INNER JOIN user as U2 ON 	r.EmployeeUser = U2.Login ORDER BY idClient";
                     psSelectRecord=conn.prepareStatement(sqlSelectRecord);
                     rsSelectRecord=psSelectRecord.executeQuery();
                     if (!rsSelectRecord.next()) {

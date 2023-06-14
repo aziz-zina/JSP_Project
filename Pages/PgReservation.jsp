@@ -2,7 +2,6 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.sql.*" %>
-
 <%
     Connection conn = null;
     Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -55,8 +54,7 @@
 </head>
 <body>
     <div id="frm2">
-        <!------------<form name="f1" action="pickEmployee.jsp" method="POST"> ------>
-        <form name="f1" action="pickEmployee.jsp" method="POST">
+        <form name="f1" action="Check_date_time.jsp" method="POST">
             <center>
                 <%
                     if (session.getAttribute("function") != null && session.getAttribute("function").equals("1")) {
@@ -65,13 +63,6 @@
                 <select name="user">
                     <option value="">--Choose a user--</option>
                     <%
-                        // Assuming you have a database connection object named "conn"
-                        // You need to replace the placeholders with your actual database connection code
-                        // String dbHost = "your_database_host";
-                        // String dbName = "your_database_name";
-                        // String dbUser = "your_database_user";
-                        // String dbPass = "your_database_password";
-                        // Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbHost + "/" + dbName, dbUser, dbPass);
                         PreparedStatement psSelectRecord=null;
                         ResultSet rsSelectRecord=null;
                         String sqlSelectRecord=null;
