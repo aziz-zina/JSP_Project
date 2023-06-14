@@ -22,8 +22,8 @@
 <%
 session = request.getSession(true);
 if (session.getAttribute("login") != null && session.getAttribute("function") != null ){
-    String id = request.getParameter("val");
-    if(session.getAttribute("function").equals("1")){
+    String id = request.getParameter("id");
+    if(!session.getAttribute("function").equals("4")){
         if(id != null){
         //Connect to DB
             Connection conn = null;
@@ -34,15 +34,25 @@ if (session.getAttribute("login") != null && session.getAttribute("function") !=
             PreparedStatement psSelectRecord=null;
             ResultSet rsSelectRecord=null;
             String sqlSelectRecord=null;
-            sqlSelectRecord = "DELETE FROM user WHERE login ='" + id +"'";
+            sqlSelectRecord = "DELETE FROM reservation WHERE idReservation ='" + id +"'";
             psSelectRecord=conn.prepareStatement(sqlSelectRecord);
             psSelectRecord.executeUpdate();
-            response.setHeader("Refresh", "2;url = userManagement.jsp?state=2");
+            if(session.getAttribute("function").equals("1")){
+                response.setHeader("Refresh", "2;url = AdminReservationsManagement.jsp?state=2");
+            } else if(session.getAttribute("function").equals("2")){
+                response.setHeader("Refresh", "2;url = EmployeeReservationsManagament.jsp?state=2");
+            } else if(session.getAttribute("function").equals("3")){
+                response.setHeader("Refresh", "2;url = personalReservationManagement.jsp?state=1");
+            }
         } else {
-            response.setHeader("Refresh", "2;url = userManagement.jsp?state=5");
+            if(session.getAttribute("function").equals("1")){
+                response.setHeader("Refresh", "2;url = AdminReservationsManagement.jsp?state=3");
+            } else {
+                response.setHeader("Refresh", "2;url = homePage.jsp?state=4");
+            }
         }
     }else {
-        response.setHeader("Refresh", "2;url = homePage.jsp?state=3");
+        response.setHeader("Refresh", "2;url = homePage.jsp?state=1");
     }
     
 } else {

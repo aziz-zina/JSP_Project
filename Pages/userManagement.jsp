@@ -19,6 +19,9 @@ if (state != null) {
         case "4":
             out.println("<script>alert('User has been validated');</script>");
             break;
+        case "5":
+            out.println("<script>alert('A problem occured!');</script>");
+            break;
     }
 }
 %>

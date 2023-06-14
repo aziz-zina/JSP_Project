@@ -46,14 +46,16 @@ if (request.getParameter("login") != null && request.getParameter("pass") != nul
         psSelectRecord.setString(4, email);
         psSelectRecord.setString(5, tel);
         psSelectRecord.executeUpdate();
-        response.setHeader("Refresh", "2;url = PgLogin.jsp"); //If there is no row selected, goes back to the login page
-        return;
+        if(session.getAttribute("function") != null){
+            if(session.getAttribute("function").equals("1")){
+                response.setHeader("Refresh", "2;url = userManagement.jsp");
+            }
+        }
+        response.setHeader("Refresh", "2;url = PgLogin.jsp");
     } else {
-        response.setHeader("Refresh", "2;url = PgResgister.jsp?state=1"); //If there is no row selected, goes back to the login page
-        return;
+        response.setHeader("Refresh", "2;url = PgRegister.jsp?state=1");
     }
 } else {
-    response.setHeader("Refresh", "2;url = PgResgister.jsp?state=2"); //If there is no row selected, goes back to the login page
-    return;
+    response.setHeader("Refresh", "2;url = PgRegister.jsp?state=2");
 }
 %>
