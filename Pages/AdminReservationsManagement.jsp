@@ -82,7 +82,6 @@ if (stateParam != null) {
                 <tr>
                     <th scope="col" style="color: black;">Date</th>
                     <th scope="col" style="color: black;">Name</th>
-
                     <th scope="col" style="color: black;">Time</th>
                     <th scope="col" style="color: black;">Pet</th>
                     <th scope="col" style="color: black;">Service Type</th>
@@ -104,13 +103,13 @@ if (stateParam != null) {
                     PreparedStatement psSelectRecord=null;
                     ResultSet rsSelectRecord=null;
                     String sqlSelectRecord=null;
-                    sqlSelectRecord = "SELECT * FROM reservation AS r INNER JOIN user as U1 ON r.idClient = U1.Login INNER JOIN user as U2 ON r.EmployeeUser = U2.Login ORDER BY idClient";
+                    sqlSelectRecord = "SELECT * FROM reservation AS r INNER JOIN user as U1 ON r.idClient = U1.Login INNER JOIN user as U2 ON r.EmployeeUser = U2.Login ORDER BY idReservation";
                     psSelectRecord=conn.prepareStatement(sqlSelectRecord);
                     rsSelectRecord=psSelectRecord.executeQuery();
-                    if (!rsSelectRecord.next()) {
+                    /*if (!rsSelectRecord.next()) {
                         response.setHeader("Refresh", "2;url = PgLogin.jsp?state=1"); //If there is no row selected, goes back to the login page
                         return;
-                    }
+                    }*/
                     while(rsSelectRecord.next()){
                         out.println("<tr class='table-secondary'><td>" + rsSelectRecord.getString("date") + "</td>");
                         out.println("<td>" + rsSelectRecord.getString("idClient") + "</td>");
