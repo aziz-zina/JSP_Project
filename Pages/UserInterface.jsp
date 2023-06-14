@@ -77,11 +77,11 @@ if (request.getParameter("state") != null) {
   <div id="frminterface">
     <form name="f1">
       <div class="button-container">
-        <a href="personalReservationManagement.php"><button class="button" type="button">MANAGEMENT OF PERSONAL
+        <a href="personalReservationManagement.jsp"><button class="button" type="button">MANAGEMENT OF PERSONAL
             RESERVATION</button></a>
-        <button class="button" type="submit" formaction="Pgpersonal_info.php"> MANAGEMENT PERSONAL ACCOUNT</button>
+        <button class="button" type="submit" formaction="Pgpersonal_info.jsp"> MANAGEMENT PERSONAL ACCOUNT</button>
       </div>
-      <a href="./homePage.php"><img src="./home.png" alt="home.png"></a>
+      <a href="./homePage.jsp"><img src="./home.png" alt="home.png"></a>
 
     </form>
   </div>

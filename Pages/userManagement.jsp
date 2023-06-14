@@ -70,8 +70,8 @@ if (state != null) {
 </head>
 
 <body>
-    <a href="./homePage.php"><img src="./home.png" alt="home.png" class="button"></a>
-    <a href="PgRegister.php"><img src="./add-user.png" alt="home.png" class="button2"></a>
+    <a href="./homePage.jsp"><img src="./home.png" alt="home.png" class="button"></a>
+    <a href="PgRegister.jsp"><img src="./add-user.png" alt="home.png" class="button2"></a>
     <div class="table-div">
         <table class="table table-hover">
             <thead style="background-color: #c3a48f;">
@@ -134,7 +134,7 @@ if (state != null) {
                         }
                     } 
                 } else {
-                    response.setHeader("Refresh", "2; URL= homePage.php?state=3");
+                    response.setHeader("Refresh", "2; URL= homePage.jsp?state=3");
                 }
             }
             %>

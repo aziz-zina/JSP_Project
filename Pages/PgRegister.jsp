@@ -45,8 +45,8 @@
                 <input type="password" id="pass" name="pass" required placeholder="Password" /><br><br>
 
                 <button type="submit" class="btn btn-primary">Submit</button><br><br>
-                <a href="PgLogin.php">Login here.</a><br>
-                <a href="homePage.php">Go back to home page</a><br><br>
+                <a href="PgLogin.jsp">Login here.</a><br>
+                <a href="homePage.jsp">Go back to home page</a><br><br>
             </center>
         </form>
     </div>

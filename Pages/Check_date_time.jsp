@@ -56,7 +56,7 @@ if (session.getAttribute("login") != null && session.getAttribute("function") !=
             psSelectRecord = conn.prepareStatement(sqlSelectRecord);
             rsSelectRecord = psSelectRecord.executeQuery();
             if (rsSelectRecord.next()) {
-                response.setHeader("Refresh", "2;url = PgReservation.php?state=3");
+                response.setHeader("Refresh", "2;url = PgReservation.jsp?state=3");
             }else {
                 %>
                 <center>
@@ -80,7 +80,7 @@ if (session.getAttribute("login") != null && session.getAttribute("function") !=
             psSelectRecord = conn.prepareStatement(sqlSelectRecord);
             rsSelectRecord = psSelectRecord.executeQuery();
             if (rsSelectRecord.next()) {
-                response.setHeader("Refresh", "2;url = PgReservation.php?state=3");
+                response.setHeader("Refresh", "2;url = PgReservation.jsp?state=3");
             }else {
                 %>
                 <center>
@@ -97,7 +97,7 @@ if (session.getAttribute("login") != null && session.getAttribute("function") !=
             }
         }
     } else {
-        response.setHeader("Refresh", "2;url = PgReservation.php?state=1");
+        response.setHeader("Refresh", "2;url = PgReservation.jsp?state=1");
     }
 } else {
     response.setHeader("Refresh", "2;url = PgLogin.jsp?state=2");

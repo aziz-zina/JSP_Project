@@ -8,7 +8,7 @@ if (session.getAttribute("login") != null && session.getAttribute("function") !=
         response.sendRedirect("homePage.jsp?state=3");
     }
 }else {
-    response.sendRedirect("PgLogin.php?state=2");
+    response.sendRedirect("PgLogin.jsp?state=2");
 }
 String stateParam = request.getParameter("state");
 if (stateParam != null) {
@@ -74,8 +74,8 @@ if (stateParam != null) {
 </head>
 
 <body>
-    <a href="./homePage.php"><img src="./home.png" alt="home.png" class="button"></a>
-    <a href="PgReservation.php"><img src="./reservation.png" alt="reservation.png" class="button2"></a>
+    <a href="./homePage.jsp"><img src="./home.png" alt="home.png" class="button"></a>
+    <a href="PgReservation.jsp"><img src="./reservation.png" alt="reservation.png" class="button2"></a>
     <div class="table-div">
         <table class="table table-hover">
             <thead style="background-color: #c3a48f;">

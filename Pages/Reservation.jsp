@@ -52,6 +52,6 @@ if (session.getAttribute("login") != null && session.getAttribute("function") !=
     psSelectRecord.executeUpdate();
     response.setHeader("Refresh", "2;url = Redirection.jsp");
 } else{
-    response.setHeader("Refresh", "2; url=PgReservation.php?state=1");
+    response.setHeader("Refresh", "2; url=PgReservation.jsp?state=1");
 }
 %>
