@@ -80,7 +80,7 @@
             PreparedStatement psSelectRecord=null;
             ResultSet rsSelectRecord=null;
             String sqlSelectRecord=null;
-            if (pet.equals("dog")) {
+            if (pet.equals("Dog")) {
                 if (service.equals("Cut")) {
                     sqlSelectRecord = "SELECT * FROM employeeact WHERE Dog = 1 AND Cut = 1";
                 } else if (service.equals("Wash")) {
