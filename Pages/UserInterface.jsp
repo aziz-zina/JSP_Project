@@ -14,6 +14,9 @@ if (request.getParameter("state") != null) {
     case "1":
       out.println("<script>alert('Personal data edited');</script>");
       break;
+    case "2":
+      out.println("<script>alert('A problem occured');</script>");
+      break;
   }
 }
 %>
